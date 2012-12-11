@@ -23,6 +23,8 @@ text color to contrast with it.
 A short story
 *************
 
+*This short story is actually longer then the included script.py*
+
 Client: I want a website made that is fun, light and very summer like.
 
 Designer: Ok.
