@@ -1,30 +1,31 @@
-from optparse import OptionParser
+"""ColourLess
+Create a colour.less file from a colourlovers palette.
+
+Usage: colourless --config <file>
+
+Options:
+  -h --help         Show this screen.
+  --config <file>   Specify a palette config file to use.
+  
+"""
+
+#from optparse import OptionParser
 import os
 import os.path
 import re
 import ConfigParser
 
+from docopt import docopt
 from colourlovers import ColourLovers
 from pystache.renderer import Renderer
 from pystache.context import ContextStack
 
-#import base
 
-def main(config_file=False):
-    if not config_file:
-        config_file = "palette.cfg"
-    parser = OptionParser(description="create a colour.less file from a colourlovers palette")
-
-    parser.add_option("--config",
-      action="store",
-      type="string",
-      default=config_file,
-      help="specify a palette config file to use.")
-
-    (options, args) = parser.parse_args()
+def main():
+    args = docopt(__doc__)
 
     config = ConfigParser.SafeConfigParser()
-    config.read(options.config)
+    config.read(args['--config'])
     palette_urls = config.get('palettes', 'url')
     palette_ids = [int(x) for x in re.findall('palette/([0-9]+)/', palette_urls)]
 

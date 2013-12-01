@@ -1,3 +1,6 @@
+import ez_setup
+ez_setup.use_setuptools()
+
 from setuptools import setup, find_packages
 
 name = "colourless"
@@ -21,12 +24,14 @@ setup(name=name,
         'Programming Language :: Python :: 2.7',
         ],
     install_requires=[
-        'setuptools',
+        'requests',
         'python-colourlovers',
         'pystache',
+        'docopt',
         ],
-    entry_points=("""
-      [console_scripts]
-      palette=colourless.script:main
-      """)
+    entry_points={
+        'console_scripts': [
+            'colourless = colourless.script:main'
+            ]
+        }
     )
